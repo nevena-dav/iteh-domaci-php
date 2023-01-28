@@ -70,6 +70,7 @@
                 </tbody>
                 </table>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Dodaj novi proizvod</button>
+                <button type="button" class="btn btn-warning"  onclick="sortiraj()">Sortiraj</button>
 
         </div>
 

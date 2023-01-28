@@ -103,3 +103,30 @@ function pretragaPoImenu() {
         }
     }
 }
+
+function sortiraj() {
+ 
+    var table, rows, switching, i, j, z, k, x, y, shouldSwitch;
+    table = document.getElementById("table");
+
+ 
+    
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+            for (j = i + 1; j < rows.length; j++) {
+                x = rows[i].getElementsByTagName("TD")[1];
+                y = rows[j].getElementsByTagName("TD")[1];
+                z = parseInt(x.innerHTML);
+                k = parseInt(y.innerHTML);
+                if (z > k) {
+                    rows[i].parentNode.insertBefore(rows[j], rows[i]);
+                }
+            }
+        }
+
+    
+ 
+
+}
+
+
