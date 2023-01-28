@@ -7,7 +7,10 @@
             $this->naziv=$naziv;
             $this->kategorija_id=$kategorija_id; 
         }
- 
+        public static function vratiSveKategorije($conn){
+            $upit = "select * from kategorija";
+            return $conn->query($upit);
+        }
 
     }
     

@@ -1,9 +1,11 @@
 <?php
     include 'config.php';  
     include 'model/Proizvod.php';  
+    include 'model/Kategorija.php';
  
     $sviproizvodi = Proizvod::vratiSveProizvode($conn);
  
+    $kategorije = Kategorija::vratiSveKategorije($conn);  
 
 
 ?>
@@ -57,6 +59,8 @@
                 <?php endwhile;?>
                 </tbody>
                 </table>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Dodaj novi proizvod</button>
+
         </div>
 
 
@@ -130,6 +134,75 @@
 
 
 
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"   aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> Dodaj proizvod</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+
+
+      <form   class="sign-in-form" id="addForm" name="addForm" method="POST" enctype="multipart/form-data" >
+        <div class="modal-body">
+           
+      
+
+        
+         
+        <div class="input-field">
+           
+            <input type="text" placeholder="Naziv.." name="naziv" id="naziv" required />
+        </div>
+        <div class="input-field">
+           
+            <input type="text" placeholder="Opis.." name="opis" id="opis" required />
+        </div>
+        <div style="font-size:20px" >
+            <label for="kategorije">Odaberi kategoriju</label>
+            <select name="kategorije" id="kategorije">
+            <?php
+                 
+                while($red = $kategorije->fetch_array()): 
+                ?>
+                  <option value=<?php echo $red["idKategorije"]?>><?php echo $red["nazivKategorije"]?></option> 
+
+                <?php   endwhile;   ?>
+            </select>
+        </div>
+        <div class="input-field">
+           
+            <input type="text" placeholder="Cena.." name="cena" id="cena" required />
+        </div>
+        <div class="input-field">
+           
+           <input type="text" placeholder="Kolicina.." name="kolicina" id="kolicina" required />
+       </div>
+       <br>
+     
+        <div style="font-size:20px;margin:0px">
+            <p> Odaberi sliku proizvoda</p>
+            
+            <input type="file" class="form-control" id="slika" name="slika"    >
+   
+        </div> 
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-success" onclick="dodaj()" >Submit</button> 
+        </div>
+ 
+
+      </form>
+    </div>
+  </div>
+</div>
+ 
 
 
 
